@@ -11,10 +11,7 @@
   width: 100%;
 
   &[data-expanded="true"] {
-    background-color: light-dark(
-      var(--mantine-color-blue-7),
-      var(--mantine-color-burntOrange-hover-dark)
-    );
+    background-color: var(--mantine-color-hover);
   }
 }
 

@@ -1,8 +1,5 @@
 .shellRoot {
-  --app-shell-border-color: light-dark(
-    transparent,
-    var(--mantine-color-burntOrange-border-dark)
-  );
+  --app-shell-border-color: var(--mantine-border-color) !important;
 }
 
 .navbar {

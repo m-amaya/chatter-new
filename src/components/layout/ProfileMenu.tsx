@@ -33,7 +33,7 @@ export function ProfileMenu() {
       <Menu.Target>
         {isMediumBreakpoint ? (
           <UnstyledButton className={classes.button}>
-            <Avatar />
+            <Avatar color="burntOrange.9" />
             <Box w={180}>
               <Text fw={900} lh={1.5} truncate="end">
                 mamaya
@@ -44,7 +44,7 @@ export function ProfileMenu() {
             </Box>
           </UnstyledButton>
         ) : (
-          <Avatar />
+          <Avatar color="burntOrange.9" />
         )}
       </Menu.Target>
       <Menu.Dropdown>

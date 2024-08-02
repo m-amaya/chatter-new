@@ -5,7 +5,7 @@
   text-decoration: none;
 
   &[aria-current="page"] {
-    color: var(--mantine-color-burntOrange-3);
+    color: var(--mantine-color-link-active);
     p {
       font-weight: 900 !important;
     }
@@ -14,7 +14,6 @@
 
 .button {
   align-items: center;
-  background-color: transparent;
   display: flex;
   gap: 8px;
   justify-content: center;
@@ -22,10 +21,7 @@
   width: 100%;
 
   @mixin hover {
-    background-color: light-dark(
-      var(--mantine-color-blue-7),
-      var(--mantine-color-burntOrange-hover-dark)
-    );
+    background-color: var(--mantine-color-hover);
   }
 
   @media (min-width: $mantine-breakpoint-md) {

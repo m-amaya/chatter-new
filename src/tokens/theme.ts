@@ -125,14 +125,23 @@ export const resolver: CSSVariablesResolver = (theme) => ({
       theme.other.colors.burntOrange.hover.dark
   },
   light: {
+    "--mantine-border-color": theme.colors.burntOrange[3],
+    "--mantine-color-body": theme.colors.burntOrange[1],
+    "--mantine-color-dimmed": theme.colors.burntOrange[8],
+    "--mantine-color-link-active": theme.colors.burntOrange[8],
+    "--mantine-color-hover": "#fae2cb",
     "--mantine-color-placeholder": theme.colors.burntOrange[9],
-    "--mantine-color-text": theme.other.colors.burntOrange.black,
-    "--mantine-tooltip-bg": theme.colors.dark[9],
-    "--mantine-dropdown-bg": theme.colors.burntOrange[1]
+    "--mantine-color-text": "#521708",
+    "--mantine-tooltip-bg": "#fae2cb",
+    "--mantine-dropdown-bg": theme.colors.burntOrange[1],
+    "--mantine-dropdown-item-hover": "#fae2cb"
   },
   dark: {
     "--mantine-border-color": theme.other.colors.burntOrange.border.dark,
     "--mantine-color-body": theme.other.colors.burntOrange.black,
+    "--mantine-color-dimmed": "#805d56",
+    "--mantine-color-hover": rgba("#fff6ed", 0.05),
+    "--mantine-color-link-active": theme.colors.burntOrange[3],
     "--mantine-color-placeholder": theme.colors.burntOrange[9],
     "--mantine-tooltip-bg": theme.other.colors.burntOrange.backgroundZ1,
     "--mantine-dropdown-bg": theme.other.colors.burntOrange.backgroundZ1,
