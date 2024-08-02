@@ -1,4 +1,5 @@
 import { Layout } from "@src/components/layout";
+import { BookmarksPage } from "@src/pages/bookmarks";
 import { ExplorePage } from "@src/pages/explore";
 import { HomePage } from "@src/pages/home";
 import { LoginPage } from "@src/pages/login";
@@ -17,6 +18,10 @@ export const router = createBrowserRouter([
       {
         path: "explore",
         element: <ExplorePage />
+      },
+      {
+        path: "bookmarks",
+        element: <BookmarksPage />
       },
       {
         path: "profile",

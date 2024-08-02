@@ -1,0 +1,12 @@
+.shellRoot {
+  --app-shell-border-color: light-dark(
+    transparent,
+    var(--mantine-color-burntOrange-border-dark)
+  );
+}
+
+.navbar {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}

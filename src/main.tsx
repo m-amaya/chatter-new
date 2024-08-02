@@ -13,7 +13,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
     <MantineProvider
       theme={theme}
       cssVariablesResolver={resolver}
-      defaultColorScheme="light"
+      defaultColorScheme="dark"
     >
       <RouterProvider router={router} />
     </MantineProvider>
