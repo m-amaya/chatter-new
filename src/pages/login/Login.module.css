@@ -1,0 +1,13 @@
+.shell {
+  display: flex;
+  height: 100vh;
+}
+
+.column1 {
+  background-color: var(--mantine-color-burntOrange-black);
+  color: white;
+}
+
+.column2 {
+  color: var(--mantine-color-burntOrange-black);
+}
