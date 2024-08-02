@@ -1,0 +1,7 @@
+node_modules/
+public/
+.gitignore
+.npmrc
+.prettierignore
+.prettierrc
+package-lock.json
