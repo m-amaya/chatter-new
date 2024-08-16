@@ -4,21 +4,33 @@ import {
   Menu,
   Text,
   UnstyledButton,
+  useComputedColorScheme,
+  useMantineColorScheme,
   useMantineTheme
 } from "@mantine/core";
 import { useMediaQuery } from "@mantine/hooks";
+import { useUserStore } from "@src/stores/user.store";
 import {
   HiOutlineLogout as LogoutIcon,
+  HiOutlineMoon as MoonIcon,
   HiOutlineUserCircle as ProfileIcon,
   HiOutlineSun as SunIcon
 } from "react-icons/hi";
+import { useNavigate } from "react-router-dom";
 import classes from "./ProfileMenu.module.css";
 
 export function ProfileMenu() {
+  const colorScheme = useComputedColorScheme();
+  const { toggleColorScheme } = useMantineColorScheme({
+    keepTransitions: true
+  });
   const theme = useMantineTheme();
   const isMediumBreakpoint = useMediaQuery(
     `(min-width: ${theme.breakpoints.md})`
   );
+  const navigateTo = useNavigate();
+  const { displayName, email, logout, photoUrl } = useUserStore();
+  const isLightTheme = colorScheme === "light";
 
   return (
     <Menu
@@ -33,13 +45,13 @@ export function ProfileMenu() {
       <Menu.Target>
         {isMediumBreakpoint ? (
           <UnstyledButton className={classes.button}>
-            <Avatar color="burntOrange.9" />
+            <Avatar color="burntOrange.9" src={photoUrl} />
             <Box w={180}>
               <Text fw={900} lh={1.5} truncate="end">
-                mamaya
+                {displayName}
               </Text>
               <Text c="dimmed" lh={1} truncate="end">
-                mamaya.dev@gmail.com
+                {email}
               </Text>
             </Box>
           </UnstyledButton>
@@ -48,9 +60,26 @@ export function ProfileMenu() {
         )}
       </Menu.Target>
       <Menu.Dropdown>
-        <Menu.Item leftSection={<ProfileIcon size={20} />}>Profile</Menu.Item>
-        <Menu.Item leftSection={<SunIcon size={20} />}>Light Mode</Menu.Item>
-        <Menu.Item leftSection={<LogoutIcon size={20} />}>Log Out</Menu.Item>
+        <Menu.Item
+          leftSection={<ProfileIcon size={20} />}
+          onClick={() => navigateTo("/profile")}
+        >
+          Profile
+        </Menu.Item>
+        <Menu.Item
+          leftSection={
+            isLightTheme ? <MoonIcon size={20} /> : <SunIcon size={20} />
+          }
+          onClick={toggleColorScheme}
+        >
+          {isLightTheme ? "Dark" : "Light"} Mode
+        </Menu.Item>
+        <Menu.Item
+          leftSection={<LogoutIcon size={20} />}
+          onClick={() => logout()}
+        >
+          Log Out
+        </Menu.Item>
       </Menu.Dropdown>
     </Menu>
   );

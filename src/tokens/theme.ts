@@ -5,6 +5,7 @@ import {
   DEFAULT_THEME,
   Menu,
   mergeMantineTheme,
+  Notification,
   rgba,
   TextInput,
   Tooltip
@@ -74,6 +75,13 @@ const themeOverride = createTheme({
         }
       }
     }),
+    Notification: Notification.extend({
+      styles: {
+        root: {
+          borderRadius: "3px"
+        }
+      }
+    }),
     TextInput: TextInput.extend({
       styles: {
         input: {
@@ -118,6 +126,7 @@ export const theme = mergeMantineTheme(DEFAULT_THEME, themeOverride);
 
 export const resolver: CSSVariablesResolver = (theme) => ({
   variables: {
+    "--mantine-border-radius": `${theme.defaultRadius}px`,
     "--mantine-color-burntOrange-black": theme.other.colors.burntOrange.black,
     "--mantine-color-burntOrange-border-dark":
       theme.other.colors.burntOrange.border.dark,

@@ -2,12 +2,14 @@ import { AppShell, Center, Stack, useMatches } from "@mantine/core";
 import { Logo } from "@src/components/layout/Logo";
 import { NavTab } from "@src/components/layout/NavTab";
 import { ProfileMenu } from "@src/components/layout/ProfileMenu";
+import { useUserStore } from "@src/stores/user.store";
+import { useEffect } from "react";
 import {
   HiBookmark as BookmarkIcon,
   HiHome as HomeIcon,
   HiSearch as SearchIcon
 } from "react-icons/hi";
-import { Outlet } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 import classes from "./Layout.module.css";
 
 export function Layout() {
@@ -15,6 +17,14 @@ export function Layout() {
     base: 68,
     md: 300
   });
+  const navigate = useNavigate();
+  const { uid } = useUserStore();
+
+  useEffect(() => {
+    if (!uid) {
+      navigate("/login");
+    }
+  }, [navigate, uid]);
 
   return (
     <AppShell
