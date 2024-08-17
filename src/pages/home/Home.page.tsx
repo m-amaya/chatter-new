@@ -1,4 +1,5 @@
-import { AppShell } from "@mantine/core";
+import { Stack } from "@mantine/core";
+import { WritePost } from "@src/pages/home/WritePost";
 import { Helmet } from "react-helmet";
 
 export function HomePage() {
@@ -7,7 +8,9 @@ export function HomePage() {
       <Helmet>
         <title>Home | Chatter</title>
       </Helmet>
-      <AppShell.Main>Home Page</AppShell.Main>
+      <Stack>
+        <WritePost />
+      </Stack>
     </>
   );
 }

@@ -1,4 +1,5 @@
 import {
+  ActionIcon,
   Button,
   createTheme,
   CSSVariablesResolver,
@@ -48,6 +49,18 @@ const themeOverride = createTheme({
   },
   primaryColor: "burntOrange",
   components: {
+    ActionIcon: ActionIcon.extend({
+      defaultProps: {
+        size: "lg",
+        variant: "subtle"
+      },
+      styles: {
+        root: {
+          borderRadius: "20px",
+          transition: "all 200ms"
+        }
+      }
+    }),
     Button: Button.extend({
       defaultProps: {
         gradient: { from: "burntOrange.5", to: "burntOrange.7" },
@@ -141,7 +154,7 @@ export const resolver: CSSVariablesResolver = (theme) => ({
     "--mantine-color-hover": "#fae2cb",
     "--mantine-color-placeholder": theme.colors.burntOrange[9],
     "--mantine-color-text": "#521708",
-    "--mantine-tooltip-bg": "#fae2cb",
+    "--mantine-tooltip-bg": theme.colors.burntOrange[1],
     "--mantine-dropdown-bg": theme.colors.burntOrange[1],
     "--mantine-dropdown-item-hover": "#fae2cb"
   },
@@ -151,7 +164,7 @@ export const resolver: CSSVariablesResolver = (theme) => ({
     "--mantine-color-dimmed": "#805d56",
     "--mantine-color-hover": rgba("#fff6ed", 0.05),
     "--mantine-color-link-active": theme.colors.burntOrange[3],
-    "--mantine-color-placeholder": theme.colors.burntOrange[9],
+    "--mantine-color-placeholder": "#805d56",
     "--mantine-tooltip-bg": theme.other.colors.burntOrange.backgroundZ1,
     "--mantine-dropdown-bg": theme.other.colors.burntOrange.backgroundZ1,
     "--mantine-dropdown-item-hover": theme.other.colors.burntOrange.backgroundZ2

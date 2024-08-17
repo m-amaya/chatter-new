@@ -9,6 +9,7 @@ import {
   useMantineTheme
 } from "@mantine/core";
 import { useMediaQuery } from "@mantine/hooks";
+import { useUser } from "@src/hooks/useUser";
 import { useUserStore } from "@src/stores/user.store";
 import {
   HiOutlineLogout as LogoutIcon,
@@ -16,7 +17,7 @@ import {
   HiOutlineUserCircle as ProfileIcon,
   HiOutlineSun as SunIcon
 } from "react-icons/hi";
-import { useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import classes from "./ProfileMenu.module.css";
 
 export function ProfileMenu() {
@@ -28,7 +29,7 @@ export function ProfileMenu() {
   const isMediumBreakpoint = useMediaQuery(
     `(min-width: ${theme.breakpoints.md})`
   );
-  const navigateTo = useNavigate();
+  const [, , clearUser] = useUser();
   const { displayName, email, logout, photoUrl } = useUserStore();
   const isLightTheme = colorScheme === "light";
 
@@ -56,13 +57,14 @@ export function ProfileMenu() {
             </Box>
           </UnstyledButton>
         ) : (
-          <Avatar color="burntOrange.9" />
+          <Avatar color="burntOrange.9" src={photoUrl} />
         )}
       </Menu.Target>
       <Menu.Dropdown>
         <Menu.Item
+          component={NavLink}
           leftSection={<ProfileIcon size={20} />}
-          onClick={() => navigateTo("/profile")}
+          to="/profile"
         >
           Profile
         </Menu.Item>
@@ -76,7 +78,10 @@ export function ProfileMenu() {
         </Menu.Item>
         <Menu.Item
           leftSection={<LogoutIcon size={20} />}
-          onClick={() => logout()}
+          onClick={() => {
+            clearUser();
+            logout();
+          }}
         >
           Log Out
         </Menu.Item>

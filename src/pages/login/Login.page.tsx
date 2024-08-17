@@ -11,6 +11,7 @@ import {
 } from "@mantine/core";
 import { useField } from "@mantine/form";
 import { notifications } from "@mantine/notifications";
+import { useUser } from "@src/hooks/useUser";
 import { User, useUserStore } from "@src/stores/user.store";
 import { auth, githubProvider, googleProvider } from "@src/tokens/firebaseApp";
 import { signInWithPopup } from "firebase/auth";
@@ -24,8 +25,9 @@ export function LoginPage() {
     validate: (value) =>
       value.trim().length < 4 ? "Name should be at least 4 characters." : null
   });
-  const navigate = useNavigate();
-  const store = useUserStore();
+  const [, setUser] = useUser();
+  const navigateTo = useNavigate();
+  const { updateUser } = useUserStore();
 
   const handleLogin = async (provider: User["provider"]) => {
     const error = await displayNameField.validate();
@@ -41,19 +43,23 @@ export function LoginPage() {
         isGoogleProvider ? googleProvider : githubProvider
       );
 
-      store.updateDisplayName(displayNameField.getValue());
-      store.updateEmail(user.email ?? "");
-      store.updatePhotoUrl(user.photoURL ?? "");
-      store.updateProvider(provider);
-      store.updateUid(user.uid);
+      const userToStore: User = {
+        displayName: displayNameField.getValue(),
+        email: user.email ?? "",
+        photoUrl: user.photoURL ?? "",
+        provider,
+        uid: user.uid
+      };
+
+      setUser(userToStore);
+      updateUser(userToStore);
+      navigateTo("/");
     } catch (error) {
       notifications.show({
         title: "Login Error",
         message: `${error}`
       });
     }
-
-    navigate("/");
   };
 
   return (

@@ -1,8 +1,9 @@
 import { AppShell, Center, Stack, useMatches } from "@mantine/core";
+import { readLocalStorageValue } from "@mantine/hooks";
 import { Logo } from "@src/components/layout/Logo";
 import { NavTab } from "@src/components/layout/NavTab";
 import { ProfileMenu } from "@src/components/layout/ProfileMenu";
-import { useUserStore } from "@src/stores/user.store";
+import { User, useUserStore } from "@src/stores/user.store";
 import { useEffect } from "react";
 import {
   HiBookmark as BookmarkIcon,
@@ -17,14 +18,19 @@ export function Layout() {
     base: 68,
     md: 300
   });
-  const navigate = useNavigate();
-  const { uid } = useUserStore();
+  const navigateTo = useNavigate();
+  const user = readLocalStorageValue<User>({ key: "user" });
+  const { uid, updateUser } = useUserStore();
 
   useEffect(() => {
-    if (!uid) {
-      navigate("/login");
+    if (user?.uid !== uid) {
+      updateUser(user);
     }
-  }, [navigate, uid]);
+
+    if (!user?.uid) {
+      navigateTo("/login", { replace: true });
+    }
+  }, [navigateTo, uid, updateUser, user]);
 
   return (
     <AppShell

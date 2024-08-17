@@ -1,0 +1,15 @@
+.container {
+  border-bottom: 1px solid var(--mantine-border-color);
+}
+
+.removePreviewButton {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.textInput {
+  --input-bd: transparent !important;
+  --input-bg: transparent !important;
+  --input-color: var(--mantine-color-text) !important;
+}

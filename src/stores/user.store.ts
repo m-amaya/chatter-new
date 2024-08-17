@@ -8,7 +8,7 @@ export type User = {
   uid: string;
 };
 
-const defaultUser: User = {
+export const defaultUser: User = {
   displayName: "",
   email: "",
   photoUrl: "",
@@ -23,6 +23,7 @@ type Action = {
   updatePhotoUrl: (url: User["photoUrl"]) => void;
   updateProvider: (url: User["provider"]) => void;
   updateUid: (uid: User["uid"]) => void;
+  updateUser: (user: User) => void;
 };
 
 export const useUserStore = create<User & Action>((set) => ({
@@ -32,5 +33,6 @@ export const useUserStore = create<User & Action>((set) => ({
   updatePhotoUrl: (url) => set(() => ({ photoUrl: url })),
   updateProvider: (provider: User["provider"]) => ({ provider }),
   updateUid: (uid) => set(() => ({ uid })),
+  updateUser: (user: User) => set({ ...user }),
   logout: () => set(defaultUser)
 }));
